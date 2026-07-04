@@ -2,8 +2,9 @@ services:
   - type: web
     name: b3-api
     runtime: python
+    plan: free
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn b3:app --bind 0.0.0.0:$PORT --workers 4 --threads 4 --timeout 120
+    startCommand: gunicorn b3:app --bind 0.0.0.0:$PORT --workers 2 --threads 4 --timeout 120
     envVars:
       - key: PYTHON_VERSION
         value: "3.12"
