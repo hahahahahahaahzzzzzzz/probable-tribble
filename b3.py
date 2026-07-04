@@ -119,7 +119,7 @@ def check_card(cc_input, proxy=None):
         # ============================================
         r = s.post(f'{API}/CreateOrder', json={
             "cinemaId": CINEMA_ID, "userID": ""
-        }, timeout=10)
+        }, timeout=30)
         order_data = r.json()
         if not order_data.get('Result', {}).get('order'):
             return result_json(n, m, y, c, "CreateOrder failed", "N/A", "N/A", elapsed(start_time))
@@ -134,7 +134,7 @@ def check_card(cc_input, proxy=None):
         # ============================================
         r = s.post(f'{API}/GetConcessionItems', json={
             "cinemaId": CINEMA_ID, "userSessionId": user_session
-        }, timeout=10)
+        }, timeout=30)
         
         conc_data = r.json()
         if not conc_data.get('Result', {}).get('ConcessionTabs'):
@@ -169,7 +169,7 @@ def check_card(cc_input, proxy=None):
             "userSessionId": user_session,
             "seats": [],
             "userID": ""
-        }, timeout=15)
+        }, timeout=30)
         
         add_resp = r.json()
         if not add_resp.get('Result', {}).get('Content', {}).get('Order'):
@@ -183,7 +183,7 @@ def check_card(cc_input, proxy=None):
         # ============================================
         r = s.post(f'{API}/PaymentClientToken', json={
             "cinemaId": CINEMA_ID
-        }, timeout=10)
+        }, timeout=30)
         
         ct_data = r.json()
         if not ct_data.get('IsSuccess'):
